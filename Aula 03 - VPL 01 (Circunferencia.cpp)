@@ -1,1 +1,65 @@
+#include <iostream>
+#include <cmath>
+#include <cstdlib>
+#include "Circunferencia.hpp"
 
+using namespace std;
+
+Circunferencia::Circunferencia (int Xc, int Yc, int R) {
+    xc = Xc;
+    yc = Yc;
+    r = R;
+}
+
+float Circunferencia::calcularArea () {
+    float area, pi = 3.14;
+    area = pi * pow(r, 2);
+    return area;
+}
+
+bool Circunferencia::possuiIntersecao (Circunferencia *c) {
+    int dx, dy;
+    if ((xc < 0 && c->xc >= 0) || (c->xc < 0 && xc >= 0)) {
+        dx = abs(xc - 0) + abs(c->xc);
+    } 
+    
+    if ((yc < 0 && c->yc >= 0) || (c->yc < 0 && yc >= 0)) {
+        dy = abs(yc - 0) + abs(c->yc);
+    } 
+    
+    if (xc >= 0 && c->xc >= 0) {
+        dx = abs(xc - c->xc);
+    } 
+    
+    if (yc >= 0 && c->yc >= 0) {
+        dy = abs(yc - c->yc);
+    }
+    
+    int diagonal = sqrt(pow(dx, 2) + pow(dy, 2));
+    
+    if ((r + c->r) >= diagonal) return true;
+    else return false;
+
+}
+
+int main() {
+
+  double xc1, yc1, r1;
+  cin >> xc1 >> yc1 >> r1;
+  Circunferencia* circ1 = new Circunferencia(xc1, yc1, r1);
+  
+  double xc2, yc2, r2;
+  cin >> xc2 >> yc2 >> r2;
+  Circunferencia* circ2 = new Circunferencia(xc2, yc2, r2);
+  
+  cout << fixed << showpoint; 
+  cout << setprecision(2);
+  
+  cout << circ1->calcularArea() << " " << circ1->possuiIntersecao(circ2) << endl;
+  cout << circ2->calcularArea() << " " << circ2->possuiIntersecao(circ1) << endl;
+
+  delete circ1;
+  delete circ2;
+
+  return 0;
+}

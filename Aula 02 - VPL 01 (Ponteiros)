@@ -1,1 +1,99 @@
+#include <iostream>
 
+#define SIZE 5
+
+int main(){
+    long value1=200000;
+    long value2;
+    
+    //1
+    long *long_ptr;
+    
+    //2
+    long_ptr = &value1;
+    
+    //3
+    std::cout << *long_ptr << " ";
+    
+    
+    //4
+    value2 = *long_ptr;
+    
+    //5
+    std::cout << value2 << " ";
+    
+    //6
+    std::cout << &value1 << " ";
+    
+    //7
+    std::cout << long_ptr << " ";
+    std::cout << "1" << " ";
+    
+    //8
+    unsigned int values[5];
+    int i = 0, j, num = 2;
+    
+    for(j=0; j<=10; j++)
+    {
+        if(num % 2 == 0)
+        {
+            values[i] = num;
+            i++;
+            num++;
+        }
+        else
+        {
+            num++;
+        }
+    }
+    
+    //9
+    unsigned int *v_ptr;
+    
+    //10
+    for(i=0; i<5; i++)
+    {
+        std::cout << values[i] << " ";
+    }
+    
+    //11
+    v_ptr = values;
+    v_ptr = &values[0];
+    
+    //12
+    for(i=0; i<5; i++)
+    {
+        std::cout << *(values + i) << " ";
+    }
+    
+    //13
+    for(i=0; i<5; i++)
+    {
+        std::cout << *(v_ptr + i) << " ";
+    }
+    
+    //14
+    for(i=0; i<5; i++)
+    {
+        std::cout << v_ptr[i] << " ";
+    }
+    
+    //15
+    std::cout << values[4] << " ";
+    std::cout << *(v_ptr + 4) << " ";
+    std::cout << *(values + 4) << " ";
+    std::cout << *(values + 4) << " ";
+    
+    //16
+    std::cout << v_ptr + 3 << " ";
+    std::cout << *(v_ptr + 3) << " ";
+    
+    //17
+    std::cout << &values[0] << " ";
+    std::cout << values[0] << " ";
+    
+    
+    
+ 
+    return 0;
+}

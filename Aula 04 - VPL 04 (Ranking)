@@ -1,1 +1,52 @@
 
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include "Estudante.hpp"
+
+float Estudante::calcularRSG () {
+    int i;
+    float soma = 0.0;
+    for(i=0; i<5; i++) {
+        soma += notas[i];
+    }
+    return soma / 5;
+}
+
+int main() {
+    int i, j;
+    
+    Estudante alunos[10];
+    for(i=0; i<10; i++) {
+        std::cin >> alunos[i].matricula;
+        std::cin >> alunos[i].nome;
+        for(j=0; j<5; j++) {
+            std::cin >> alunos[i].notas[j];
+        }
+    }
+    
+    Estudante aux;
+    float biggestGrade = -1;
+    int bestStudent;
+    
+    for(i=0; i<3; i++) {
+        biggestGrade = -1;
+        for(j=0; j<(10-i); j++) {
+            if (alunos[j].calcularRSG() > biggestGrade || (alunos[j].calcularRSG() == biggestGrade && alunos[j].matricula < alunos[bestStudent].matricula)) {
+                biggestGrade = alunos[j].calcularRSG();
+                bestStudent = j;
+            }
+        }
+        
+        aux = alunos[bestStudent];
+        alunos[bestStudent] = alunos[9-i];
+        alunos[9-i] = aux;
+    } 
+    
+    std::cout << alunos[9].matricula << " " << alunos[9].nome << " " << std::setprecision (2) << std::fixed << alunos[9].calcularRSG() << std::endl;
+    std::cout << alunos[8].matricula << " " << alunos[8].nome << " " << std::setprecision (2) << std::fixed << alunos[8].calcularRSG() << std::endl;
+    std::cout << alunos[7].matricula << " " << alunos[7].nome << " " << std::setprecision (2) << std::fixed << alunos[7].calcularRSG() << std::endl;
+    
+    
+    
+}
